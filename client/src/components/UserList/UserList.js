@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Card, Spinner} from 'react-bootstrap'
+import {Spinner} from 'react-bootstrap'
 import UserItem from '../UserItem'
 import {useHttp} from '../../hooks/useHttp'
 import {listUser} from '../../constants'
 
-function UserList(props) {
+function UserList() {
     const [users, setUsers] = useState([])
     const {loading, request} = useHttp();
 
