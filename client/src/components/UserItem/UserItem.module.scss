@@ -1,0 +1,23 @@
+.card {
+  flex-direction: initial;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.button {
+  border: 1px solid #151414;
+  background-color: transparent;
+  border-radius: 20px;
+  font-weight: 200;
+  color: #151414;
+  &:hover {
+    background-color: transparent;
+    color: #0062cc;
+  }
+}
