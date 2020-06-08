@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
 import {Spinner} from 'react-bootstrap'
 import UserItem from '../UserItem'
 import {useHttp} from '../../hooks/useHttp'
@@ -10,7 +10,7 @@ function UserList() {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await request(listUser)
+            const res = await request(`${listUser}?per_page=5`)
             setUsers(res)
         }
 

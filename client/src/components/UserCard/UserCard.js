@@ -1,15 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
+import {Link, withRouter} from 'react-router-dom'
 import {Spinner, Card} from 'react-bootstrap'
 import {listUser} from '../../constants'
 import {useHttp} from '../../hooks/useHttp'
 import s from './UserCard.module.scss'
-import {Link} from "react-router-dom";
 
-function UserCard({location: {username}}) {
+function UserCard({location: {username}, history}) {
     const [user, setUser] = useState([])
     const {loading, request} = useHttp()
 
     useEffect(() => {
+        if (!username) {
+            history.push('/')
+        }
+
         async function fetchUser() {
             const res = await request(`${listUser}/${username}`)
             setUser(res)
@@ -35,4 +39,4 @@ function UserCard({location: {username}}) {
     );
 }
 
-export default UserCard;
+export default withRouter(UserCard);
