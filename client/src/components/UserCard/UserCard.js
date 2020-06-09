@@ -5,7 +5,7 @@ import {dataUrl} from '../../constants'
 import {useHttp} from '../../hooks/useHttp'
 import s from './UserCard.module.scss'
 
-function UserCard({location: {username, pathname}, history}) {
+function UserCard({location: {username}, history}) {
     const [user, setUser] = useState([])
     const {loading, request} = useHttp()
 
@@ -29,7 +29,7 @@ function UserCard({location: {username, pathname}, history}) {
                 <Card.Title className={s.name}>{user.name}</Card.Title>
                 <Card.Text  className={s.location}>{user.location}</Card.Text>
                 <Card.Text className={s.date}>from {user.created_at}</Card.Text>
-                <Link to={{pathname: '/', state: {prevPath: pathname}}}>back</Link>
+                <Link to='/'>back</Link>
             </Card.Body>
         </Card>
     );
