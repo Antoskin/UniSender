@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {Spinner, Card} from 'react-bootstrap'
-import {listUser} from '../../constants'
+import {dataUrl} from '../../constants'
 import {useHttp} from '../../hooks/useHttp'
 import s from './UserCard.module.scss'
 
@@ -10,21 +10,17 @@ function UserCard({location: {username}, history}) {
     const {loading, request} = useHttp()
 
     useEffect(() => {
-        if (!username) {
-            history.push('/')
-        }
+        if (!username) {return history.push('/')}
 
         async function fetchUser() {
-            const res = await request(`${listUser}/${username}`)
+            const res = await request(`${dataUrl}/${username}`)
             setUser(res)
         }
 
         fetchUser()
-    }, [request, username])
+    }, [request, username, history])
 
-    if (loading) {
-        return <Spinner animation="grow" />
-    }
+    if (loading) {return <Spinner animation="grow" />}
 
     return (
         <Card>

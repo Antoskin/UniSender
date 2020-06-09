@@ -1,3 +1,4 @@
-const listUser = 'https://api.github.com/users'
+const dataUrl = 'https://api.github.com/users'
+const usersPerPage = 5
 
-export {listUser}
+export {dataUrl, usersPerPage}
