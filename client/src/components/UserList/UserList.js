@@ -1,33 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react'
 import {Spinner} from 'react-bootstrap'
 import UserItem from '../UserItem'
-import {useHttp} from '../../hooks/useHttp'
-import {listUser} from '../../constants'
+import Pagination from '../Pagination'
+import {UserContext} from '../../context'
+import {usersPerPage as perPage} from '../../constants'
 
 function UserList() {
-    const [users, setUsers] = useState([])
-    const {loading, request} = useHttp();
+    const {loading, users, total, activeDot, onChangePage} = useContext(UserContext)
 
-    useEffect(() => {
-        async function fetchData() {
-            const res = await request(listUser)
-            setUsers(res)
-        }
+    if (loading) {return <Spinner animation="grow" />}
 
-        fetchData();
-    },[request])
-
-    if (loading) {
-        return <Spinner animation="grow" />
-    }
-    console.log(users)
     return (
-        <>
-            {users.map(user => (
-                <UserItem key={user.id} user={user} />
-            ))}
+        <> {users.map(user => (
+            <UserItem key={user.id} user={user}  />
+        ))}
+            <Pagination
+                total={total}
+                perPage={perPage}
+                activeDot={activeDot}
+                changePage={onChangePage}
+            />
         </>
     );
 }
 
-export default UserList;
+export default UserList
